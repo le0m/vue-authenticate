@@ -1361,16 +1361,16 @@ VueAuthenticate.prototype.logout = function logout (requestOptions) {
 /**
  * Authenticate user using authentication provider
  * 
- * @param{String} provider     Provider name
- * @param{Object} userData     User data
- * @param{Object} requestOptions Request options
- * @return {Promise}             Request promise
+ * @param{String} provider      Provider name
+ * @param{Object} userData      User data
+ * @param{Object} providerOptions Provider options
+ * @return {Promise}              Request promise
  */
-VueAuthenticate.prototype.authenticate = function authenticate (provider, userData, requestOptions) {
+VueAuthenticate.prototype.authenticate = function authenticate (provider, userData, providerOptions) {
     var this$1 = this;
 
   return new Promise$1(function (resolve, reject) {
-    var providerConfig = this$1.options.providers[provider];
+    var providerConfig = objectExtend(this$1.options.providers[provider], providerOptions);
     if (!providerConfig) {
       return reject(new Error('Unknown provider'))
     }

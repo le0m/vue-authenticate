@@ -191,14 +191,14 @@ export default class VueAuthenticate {
   /**
    * Authenticate user using authentication provider
    * 
-   * @param  {String} provider       Provider name
-   * @param  {Object} userData       User data
-   * @param  {Object} requestOptions Request options
-   * @return {Promise}               Request promise
+   * @param  {String} provider        Provider name
+   * @param  {Object} userData        User data
+   * @param  {Object} providerOptions Provider options
+   * @return {Promise}                Request promise
    */
-  authenticate(provider, userData, requestOptions) {
+  authenticate(provider, userData, providerOptions) {
     return new Promise((resolve, reject) => {
-      var providerConfig = this.options.providers[provider]
+      var providerConfig = objectExtend(this.options.providers[provider], providerOptions)
       if (!providerConfig) {
         return reject(new Error('Unknown provider'))
       }
